@@ -76,7 +76,7 @@ export default function Dashboard() {
 
       <div className="flex md:h-[calc(100vh-73px)] overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none scroll-smooth" style={{WebkitOverflowScrolling: 'touch'}}>
         {/* Sidebar — report history */}
-        <aside className="snap-start min-w-full md:min-w-0 md:w-64 border-r border-gray-800 overflow-y-auto flex-shrink-0 h-[calc(100vh-100px)] md:h-auto">
+        <aside className="snap-start min-w-full md:min-w-0 md:w-52 border-r border-gray-800 overflow-y-auto flex-shrink-0 h-[calc(100vh-100px)] md:h-auto">
           <div className="px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
             Report History
           </div>
