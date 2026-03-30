@@ -69,9 +69,14 @@ export default function Dashboard() {
         </div>
       )}
 
-      <div className="flex h-[calc(100vh-73px)]">
+      {/* Mobile swipe hint */}
+      <p className="md:hidden text-center text-xs text-gray-600 py-1 bg-gray-950">
+        ← swipe to read report →
+      </p>
+
+      <div className="flex md:h-[calc(100vh-73px)] overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none scroll-smooth" style={{WebkitOverflowScrolling: 'touch'}}>
         {/* Sidebar — report history */}
-        <aside className="w-64 border-r border-gray-800 overflow-y-auto flex-shrink-0">
+        <aside className="snap-start min-w-full md:min-w-0 md:w-64 border-r border-gray-800 overflow-y-auto flex-shrink-0 h-[calc(100vh-100px)] md:h-auto">
           <div className="px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
             Report History
           </div>
@@ -100,7 +105,7 @@ export default function Dashboard() {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="snap-start min-w-full md:min-w-0 flex-1 overflow-y-auto overflow-x-auto p-4 md:p-6 h-[calc(100vh-100px)] md:h-auto">
           {!selected ? (
             <div className="flex items-center justify-center h-full text-gray-500">
               No report selected.
