@@ -12,6 +12,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchReports()
+    // Poll every 30 seconds for new reports
+    const interval = setInterval(fetchReports, 30000)
+    return () => clearInterval(interval)
   }, [])
 
   async function fetchReports() {
@@ -32,7 +35,14 @@ export default function Dashboard() {
     setTriggerMessage('')
     const res = await fetch('/api/trigger', { method: 'POST' })
     if (res.ok) {
-      setTriggerMessage('Report triggered! Check back in ~1 minute.')
+      setTriggerMessage('Report triggered! Checking for updates...')
+      // Poll every 10s for up to 3 minutes after triggering
+      let attempts = 0
+      const poll = setInterval(async () => {
+        await fetchReports()
+        attempts++
+        if (attempts >= 18) clearInterval(poll)
+      }, 10000)
     } else {
       setTriggerMessage('Failed to trigger. Check GitHub token.')
     }
