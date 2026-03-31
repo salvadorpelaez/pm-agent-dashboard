@@ -34,7 +34,10 @@ export default function Dashboard() {
     setTriggering(true)
     setTriggerMessage('')
     const res = await fetch('/api/trigger', { method: 'POST' })
-    if (res.ok) {
+    if (res.status === 409) {
+      const data = await res.json()
+      setTriggerMessage(data.error)
+    } else if (res.ok) {
       setTriggerMessage('Report triggered! Checking for updates...')
       // Poll every 10s for up to 3 minutes after triggering
       let attempts = 0

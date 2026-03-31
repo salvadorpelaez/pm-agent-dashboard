@@ -10,6 +10,23 @@ export async function POST() {
     return NextResponse.json({ error: 'GitHub token not configured' }, { status: 500 })
   }
 
+  // Check if a run is already in progress
+  const runsRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/runs?status=in_progress&per_page=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+      },
+    }
+  )
+  if (runsRes.ok) {
+    const runsData = await runsRes.json()
+    if (runsData.total_count > 0) {
+      return NextResponse.json({ error: 'A report is already running. Please try again shortly.' }, { status: 409 })
+    }
+  }
+
   const response = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/dispatches`,
     {
