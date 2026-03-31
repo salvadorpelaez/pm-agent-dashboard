@@ -112,7 +112,7 @@ export default function Dashboard() {
 
         {/* Mobile hint */}
         <p className="md:hidden text-center text-xs text-gray-600 py-2 border-b border-gray-800">
-          ← Slide to review report detail →
+          Scroll to review report history
         </p>
 
         {/* Main content */}
