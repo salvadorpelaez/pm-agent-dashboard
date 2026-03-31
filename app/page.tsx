@@ -82,7 +82,7 @@ export default function Dashboard() {
 
       <div className="flex flex-col md:flex-row md:h-[calc(100vh-73px)]">
         {/* Sidebar — report history */}
-        <aside className="md:w-56 border-b md:border-b-0 md:border-r border-gray-800 flex-shrink-0 md:overflow-y-auto">
+        <aside className="md:w-56 border-b md:border-b-0 md:border-r border-gray-800 flex-shrink-0 overflow-y-auto max-h-48 md:max-h-none md:overflow-y-auto">
           <div className="px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
             Report History
           </div>
@@ -109,6 +109,11 @@ export default function Dashboard() {
             ))
           )}
         </aside>
+
+        {/* Mobile hint */}
+        <p className="md:hidden text-center text-xs text-gray-600 py-2 border-b border-gray-800">
+          ← Slide to review report detail →
+        </p>
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto overflow-x-auto p-4 md:p-6">
